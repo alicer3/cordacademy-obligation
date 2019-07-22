@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "b8cd72f9-c9b6-4384-9aa8-a7f382c91d38",
+		"_postman_id": "2cad946f-9a66-493b-9ee2-b27a1ab1df9a",
 		"name": "Cordacademy Obligation CorDapp",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -416,6 +416,37 @@
 							]
 						},
 						"description": "Settles an obligation."
+					},
+					"response": []
+				},
+				{
+					"name": "/obligations/default",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"linearId\": \"REPLACE_WITH_A_REAL_LINEAR_ID\"\n}"
+						},
+						"url": {
+							"raw": "localhost:{{port_a}}/obligations/default",
+							"host": [
+								"localhost"
+							],
+							"port": "{{port_a}}",
+							"path": [
+								"obligations",
+								"default"
+							]
+						},
+						"description": "Transfers an obligation."
 					},
 					"response": []
 				},
@@ -863,6 +894,37 @@
 							]
 						},
 						"description": "Settles an obligation."
+					},
+					"response": []
+				},
+				{
+					"name": "/obligations/default",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"linearId\": \"REPLACE_WITH_A_REAL_LINEAR_ID\"\n}"
+						},
+						"url": {
+							"raw": "localhost:{{port_b}}/obligations/default",
+							"host": [
+								"localhost"
+							],
+							"port": "{{port_b}}",
+							"path": [
+								"obligations",
+								"default"
+							]
+						},
+						"description": "Transfers an obligation."
 					},
 					"response": []
 				},
@@ -1332,6 +1394,37 @@
 							]
 						},
 						"description": "Settles an obligation."
+					},
+					"response": []
+				},
+				{
+					"name": "/obligations/default",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"linearId\": \"REPLACE_WITH_A_REAL_LINEAR_ID\"\n}"
+						},
+						"url": {
+							"raw": "localhost:{{port_c}}/obligations/default",
+							"host": [
+								"localhost"
+							],
+							"port": "{{port_c}}",
+							"path": [
+								"obligations",
+								"default"
+							]
+						},
+						"description": "Transfers an obligation."
 					},
 					"response": []
 				},
