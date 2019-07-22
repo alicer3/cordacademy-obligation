@@ -65,9 +65,8 @@ dependencies {
     cordaCompile "$corda_group:corda-core:$corda_release_version"
 
     // CorDapp Dependencies
-    // TODO : Add cordapp packages to your dependency configuration; for example...
-    // cordapp project(":my-first-cordapp-contract")
-    // cordapp project(":my-first-cordapp-workflow")
+     cordapp project(":cordacademy-obligation-contract")
+     cordapp project(":cordacademy-obligation-workflow")
 
     // Corda Deployment Dependencies
     cordaCompile "$corda_group:corda:$corda_release_version"
@@ -97,9 +96,8 @@ task deployNodes(type: net.corda.plugins.Cordform, dependsOn: ['jar']) {
         projectCordapp {
             deploy = false
         }
-        // TODO : Add cordapp packages to your node deployment configuration; for example...
-        // cordapp project(":my-first-cordapp-contract")
-        // cordapp project(":my-first-cordapp-workflow")
+        cordapp project(":cordacademy-obligation-contract")
+        cordapp project(":cordacademy-obligation-workflow")
         rpcUsers = [[user: "guest", "password": "letmein", "permissions": ["ALL"]]]
     }
 

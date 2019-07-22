@@ -1,7 +1,7 @@
 {
 	"info": {
-		"_postman_id": "d5129f74-b1cd-4b1f-a561-928e41a6189a",
-		"name": "Cordacademy Template",
+		"_postman_id": "b8cd72f9-c9b6-4384-9aa8-a7f382c91d38",
+		"name": "Cordacademy Obligation CorDapp",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
@@ -300,6 +300,153 @@
 							]
 						},
 						"description": "Shuts down the local node."
+					},
+					"response": []
+				},
+				{
+					"name": "/obligations",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "localhost:{{port_a}}/obligations",
+							"host": [
+								"localhost"
+							],
+							"port": "{{port_a}}",
+							"path": [
+								"obligations"
+							]
+						},
+						"description": "Gets all unconsumed obligation states."
+					},
+					"response": []
+				},
+				{
+					"name": "/obligations/issue",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"obligor\": \"O=PartyB, L=New York, C=US\",\n\t\"borrowed\": 123.45,\n\t\"currency\": \"GBP\"\n}"
+						},
+						"url": {
+							"raw": "localhost:{{port_a}}/obligations/issue",
+							"host": [
+								"localhost"
+							],
+							"port": "{{port_a}}",
+							"path": [
+								"obligations",
+								"issue"
+							]
+						},
+						"description": "Issues an obligation."
+					},
+					"response": []
+				},
+				{
+					"name": "/obligations/transfer",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"linearId\": \"REPLACE_WITH_A_REAL_LINEAR_ID\",\n\t\"obligee\": \"O=PartyC, L=Paris, C=FR\"\n}"
+						},
+						"url": {
+							"raw": "localhost:{{port_a}}/obligations/transfer",
+							"host": [
+								"localhost"
+							],
+							"port": "{{port_a}}",
+							"path": [
+								"obligations",
+								"transfer"
+							]
+						},
+						"description": "Transfers an obligation."
+					},
+					"response": []
+				},
+				{
+					"name": "/obligations/settle",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"linearId\": \"REPLACE_WITH_A_REAL_LINEAR_ID\",\n\t\"settled\": 23.45,\n\t\"currency\": \"GBP\"\n}"
+						},
+						"url": {
+							"raw": "localhost:{{port_a}}/obligations/settle",
+							"host": [
+								"localhost"
+							],
+							"port": "{{port_a}}",
+							"path": [
+								"obligations",
+								"settle"
+							]
+						},
+						"description": "Settles an obligation."
+					},
+					"response": []
+				},
+				{
+					"name": "/obligations/exit",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"linearId\": \"REPLACE_WITH_A_REAL_LINEAR_ID\"\n}"
+						},
+						"url": {
+							"raw": "localhost:{{port_a}}/obligations/exit",
+							"host": [
+								"localhost"
+							],
+							"port": "{{port_a}}",
+							"path": [
+								"obligations",
+								"exit"
+							]
+						},
+						"description": "Exits a fully settled obligation."
 					},
 					"response": []
 				}
@@ -602,13 +749,160 @@
 						"description": "Shuts down the local node."
 					},
 					"response": []
+				},
+				{
+					"name": "/obligations",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "localhost:{{port_b}}/obligations",
+							"host": [
+								"localhost"
+							],
+							"port": "{{port_b}}",
+							"path": [
+								"obligations"
+							]
+						},
+						"description": "Gets all unconsumed obligation states."
+					},
+					"response": []
+				},
+				{
+					"name": "/obligations/issue",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"obligor\": \"O=PartyC, L=Paris, C=FR\",\n\t\"borrowed\": 123.45,\n\t\"currency\": \"GBP\"\n}"
+						},
+						"url": {
+							"raw": "localhost:{{port_b}}/obligations/issue",
+							"host": [
+								"localhost"
+							],
+							"port": "{{port_b}}",
+							"path": [
+								"obligations",
+								"issue"
+							]
+						},
+						"description": "Issues an obligation."
+					},
+					"response": []
+				},
+				{
+					"name": "/obligations/transfer",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"linearId\": \"REPLACE_WITH_A_REAL_LINEAR_ID\",\n\t\"obligee\": \"O=PartyA, L=London, C=GB\"\n}"
+						},
+						"url": {
+							"raw": "localhost:{{port_b}}/obligations/transfer",
+							"host": [
+								"localhost"
+							],
+							"port": "{{port_b}}",
+							"path": [
+								"obligations",
+								"transfer"
+							]
+						},
+						"description": "Transfers an obligation."
+					},
+					"response": []
+				},
+				{
+					"name": "/obligations/settle",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"linearId\": \"REPLACE_WITH_A_REAL_LINEAR_ID\",\n\t\"settled\": 23.45,\n\t\"currency\": \"GBP\"\n}"
+						},
+						"url": {
+							"raw": "localhost:{{port_b}}/obligations/settle",
+							"host": [
+								"localhost"
+							],
+							"port": "{{port_b}}",
+							"path": [
+								"obligations",
+								"settle"
+							]
+						},
+						"description": "Settles an obligation."
+					},
+					"response": []
+				},
+				{
+					"name": "/obligations/exit",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"linearId\": \"REPLACE_WITH_A_REAL_LINEAR_ID\"\n}"
+						},
+						"url": {
+							"raw": "localhost:{{port_b}}/obligations/exit",
+							"host": [
+								"localhost"
+							],
+							"port": "{{port_b}}",
+							"path": [
+								"obligations",
+								"exit"
+							]
+						},
+						"description": "Exits a fully settled obligation."
+					},
+					"response": []
 				}
 			],
 			"event": [
 				{
 					"listen": "prerequest",
 					"script": {
-						"id": "febeb6f9-fb15-4d3f-ba22-a4b2cdc95c84",
+						"id": "66b3b9ea-d2a8-4670-8211-e02714676145",
 						"type": "text/javascript",
 						"exec": [
 							""
@@ -618,7 +912,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "830eed27-8621-4473-98c3-4f0775adb348",
+						"id": "55a04def-27fe-4a41-b675-12e4d6b993bd",
 						"type": "text/javascript",
 						"exec": [
 							""
@@ -924,13 +1218,160 @@
 						"description": "Shuts down the local node."
 					},
 					"response": []
+				},
+				{
+					"name": "/obligations",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "localhost:{{port_c}}/obligations",
+							"host": [
+								"localhost"
+							],
+							"port": "{{port_c}}",
+							"path": [
+								"obligations"
+							]
+						},
+						"description": "Gets all unconsumed obligation states."
+					},
+					"response": []
+				},
+				{
+					"name": "/obligations/issue",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"obligor\": \"O=PartyA, L=London, C=GB\",\n\t\"borrowed\": 123.45,\n\t\"currency\": \"GBP\"\n}"
+						},
+						"url": {
+							"raw": "localhost:{{port_c}}/obligations/issue",
+							"host": [
+								"localhost"
+							],
+							"port": "{{port_c}}",
+							"path": [
+								"obligations",
+								"issue"
+							]
+						},
+						"description": "Issues an obligation."
+					},
+					"response": []
+				},
+				{
+					"name": "/obligations/transfer",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"linearId\": \"REPLACE_WITH_A_REAL_LINEAR_ID\",\n\t\"obligee\": \"O=PartyB, L=New York, C=US\"\n}"
+						},
+						"url": {
+							"raw": "localhost:{{port_c}}/obligations/transfer",
+							"host": [
+								"localhost"
+							],
+							"port": "{{port_c}}",
+							"path": [
+								"obligations",
+								"transfer"
+							]
+						},
+						"description": "Transfers an obligation."
+					},
+					"response": []
+				},
+				{
+					"name": "/obligations/settle",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"linearId\": \"REPLACE_WITH_A_REAL_LINEAR_ID\",\n\t\"settled\": 23.45,\n\t\"currency\": \"GBP\"\n}"
+						},
+						"url": {
+							"raw": "localhost:{{port_c}}/obligations/settle",
+							"host": [
+								"localhost"
+							],
+							"port": "{{port_c}}",
+							"path": [
+								"obligations",
+								"settle"
+							]
+						},
+						"description": "Settles an obligation."
+					},
+					"response": []
+				},
+				{
+					"name": "/obligations/exit",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"linearId\": \"REPLACE_WITH_A_REAL_LINEAR_ID\"\n}"
+						},
+						"url": {
+							"raw": "localhost:{{port_c}}/obligations/exit",
+							"host": [
+								"localhost"
+							],
+							"port": "{{port_c}}",
+							"path": [
+								"obligations",
+								"exit"
+							]
+						},
+						"description": "Exits a fully settled obligation."
+					},
+					"response": []
 				}
 			],
 			"event": [
 				{
 					"listen": "prerequest",
 					"script": {
-						"id": "febeb6f9-fb15-4d3f-ba22-a4b2cdc95c84",
+						"id": "69edf2d4-b5b2-4f27-944b-a7a23cfbacf7",
 						"type": "text/javascript",
 						"exec": [
 							""
@@ -940,7 +1381,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "830eed27-8621-4473-98c3-4f0775adb348",
+						"id": "ae862aed-7e46-4397-8b79-f60e3c6e914a",
 						"type": "text/javascript",
 						"exec": [
 							""
@@ -950,21 +1391,43 @@
 			]
 		}
 	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "e62cc713-ce60-4132-93a8-f4a45d76452f",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "05a2dd54-6da6-41f1-8f60-c9b4da85e28e",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
 	"variable": [
 		{
-			"id": "c253ea55-a3d4-4a5d-9763-9fba6f91cb9e",
+			"id": "eea0dab0-d000-4814-a0b9-b114ac19118c",
 			"key": "port_a",
 			"value": "8085",
 			"type": "string"
 		},
 		{
-			"id": "b42b1fee-f71e-4eb4-a964-bc346dabb9bf",
+			"id": "396e9c4a-ec65-47ff-ae25-f59ec6c1afe4",
 			"key": "port_b",
 			"value": "8089",
 			"type": "string"
 		},
 		{
-			"id": "96bd1ce8-d81d-43ab-a101-21d6abd2c8a0",
+			"id": "8d72d8ff-f4f4-45d9-b8a6-7e143ef2e6a9",
 			"key": "port_c",
 			"value": "8093",
 			"type": "string"

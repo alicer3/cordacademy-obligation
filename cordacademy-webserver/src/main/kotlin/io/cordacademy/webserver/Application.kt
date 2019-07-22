@@ -6,6 +6,7 @@ import com.fasterxml.jackson.databind.SerializationFeature
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule
 import io.cordacademy.webserver.areas.admin.adminRoutes
 import io.cordacademy.webserver.areas.nodes.nodeRoutes
+import io.cordacademy.webserver.areas.obligation.obligationRoutes
 import io.ktor.application.install
 import io.ktor.features.CallLogging
 import io.ktor.features.Compression
@@ -40,6 +41,7 @@ fun main() {
         routing {
             adminRoutes(rpcProxy)
             nodeRoutes(rpcProxy)
+            obligationRoutes(rpcProxy)
         }
     }.start(wait = true)
 }
