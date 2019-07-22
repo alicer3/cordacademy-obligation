@@ -20,7 +20,7 @@ cordapp {
         name "Cordacademy Obligation Workflow"
         vendor "Cordacademy"
         licence "Apache License, Version 2.0"
-        versionId 1
+        versionId 2
     }
 }
 
@@ -33,6 +33,7 @@ dependencies {
 
     // CorDapp Dependencies
     cordapp project(":cordacademy-obligation-contract")
+    cordapp "$corda_group:corda-confidential-identities:$corda_release_version"
 
     // Test Dependencies
     testRuntimeOnly "$junit_group:junit-jupiter-engine:$junit_version"

@@ -20,7 +20,8 @@ data class ObligationTransactionOutputDto(
 data class ObligationIssuanceInputDto(
     val obligor: String?,
     val borrowed: BigDecimal?,
-    val currency: String?
+    val currency: String?,
+    val anonymous: Boolean = false
 )
 
 data class ObligationTransferInputDto(

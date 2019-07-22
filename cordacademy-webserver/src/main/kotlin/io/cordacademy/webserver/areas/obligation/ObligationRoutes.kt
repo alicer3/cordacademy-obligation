@@ -40,7 +40,8 @@ fun Route.obligationRoutes(rpc: CordaRPCOps) = route("/obligations") {
             val dto = call.receive<ObligationIssuanceInputDto>()
             val obligor = rpc.resolveParty(dto.obligor)
             val borrowed = Amount.ofCurrency(dto.borrowed, dto.currency)
-            val transaction = rpc.startTrackedFlow(::IssuanceFlow, obligor, borrowed).returnValue.getOrThrow()
+            val transaction = rpc
+                .startTrackedFlow(::IssuanceFlow, obligor, borrowed, dto.anonymous).returnValue.getOrThrow()
             call.respond(ObligationTransactionOutputDto(transaction.id.toString()))
         } catch (ex: Exception) {
             call.respond(HttpStatusCode.InternalServerError, mapOf("errorMessage" to ex.message))

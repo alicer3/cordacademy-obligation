@@ -14,9 +14,10 @@ fun FlowTest.issue(
     initiator: StartedMockNode,
     obligor: Party,
     borrowed: Amount<Currency>,
-    timeout: Duration = Duration.ofSeconds(30)
+    timeout: Duration = Duration.ofSeconds(30),
+    anonymous: Boolean = false
 ): SignedTransaction {
-    val flow = ObligationIssuanceFlow.Initiator(obligor, borrowed)
+    val flow = ObligationIssuanceFlow.Initiator(obligor, borrowed, anonymous)
     return run { initiator.startFlow(flow) }.getOrThrow(timeout)
 }
 
