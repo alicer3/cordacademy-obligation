@@ -6,11 +6,11 @@
 
 Obligations are simple states that represent an agreement for an amount of currency between an obligor (otherwise known as a debtor or borrower) and an obligee (otherwise known as a creditor or lender). Any participant can issue an obligation to any other participant on the network. Obligations can be settled partially, or in full. Once an obligation has been fully settled, it can be exited, at which point, the evolution of the obligation state ceases.
 
-## [Contract (version 1)](https://github.com/cordacademy/cordacademy-obligation/tree/master/cordacademy-obligation-contract-v1/src/main/kotlin/io/cordacademy/obligation/contract/v1)
+## [Contract](https://github.com/cordacademy/cordacademy-obligation/tree/master/cordacademy-obligation-contract/src/main/kotlin/io/cordacademy/obligation/contract)
 
 Defines the state and contract for the obligation CorDapp. The contract packages are versioned to allow for future upgrades.
 
-### [ObligationState](https://github.com/cordacademy/cordacademy-obligation/blob/master/cordacademy-obligation-contract-v1/src/main/kotlin/io/cordacademy/obligation/contract/v1/ObligationState.kt)
+### [ObligationState](https://github.com/cordacademy/cordacademy-obligation/blob/master/cordacademy-obligation-contract/src/main/kotlin/io/cordacademy/obligation/contract/ObligationState.kt)
 
 Represents an obligation between an obligor and an obligee for an amount of currency.
 
@@ -27,7 +27,7 @@ data class ObligationState(
 ) : LinearState { ... }
 ```
 
-### [ObligationContract](https://github.com/cordacademy/cordacademy-obligation/blob/master/cordacademy-obligation-contract-v1/src/main/kotlin/io/cordacademy/obligation/contract/v1/ObligationContract.kt)
+### [ObligationContract](https://github.com/cordacademy/cordacademy-obligation/blob/master/cordacademy-obligation-contract/src/main/kotlin/io/cordacademy/obligation/contract/ObligationContract.kt)
 
 Represents the obligation contract which governs how obligation states may evolve.
 
