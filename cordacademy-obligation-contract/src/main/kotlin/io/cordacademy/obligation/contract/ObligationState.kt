@@ -22,7 +22,8 @@ data class ObligationState(
     val obligee: AbstractParty,
     val borrowed: Amount<Currency>,
     val settled: Amount<Currency> = Amount.zero(borrowed.token),
-    override val linearId: UniqueIdentifier = UniqueIdentifier()
+    override val linearId: UniqueIdentifier = UniqueIdentifier(),
+    val defaulted: Boolean? = null
 ) : LinearState {
 
     init {

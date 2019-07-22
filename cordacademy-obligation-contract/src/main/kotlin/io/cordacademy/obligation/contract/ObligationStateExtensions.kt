@@ -27,6 +27,13 @@ fun ObligationState.transfer(obligee: AbstractParty) = copy(obligee = obligee)
 fun ObligationState.settle(amount: Amount<Currency>) = copy(settled = settled + amount)
 
 /**
+ * Defaults an obligation.
+ *
+ * @return Returns a new obligation updating the defaulted value to true.
+ */
+fun ObligationState.default() = copy(defaulted = true)
+
+/**
  * Gets a hash code of the obligation excluding the obligee.
  *
  * @return Returns a hash code of the obligation excluding the obligee.
@@ -39,3 +46,10 @@ internal fun ObligationState.hashWithoutObligee() = Objects.hash(obligor, borrow
  * @return Returns a hash code of the obligation excluding the settled amount.
  */
 internal fun ObligationState.hashWithoutSettled() = Objects.hash(obligor, obligee, borrowed, linearId)
+
+/**
+ * Gets a hash code of the obligation excluding the defaulted value.
+ *
+ * @return Returns a hash code of the obligation excluding the defaulted value.
+ */
+internal fun ObligationState.hashWithoutDefaulted() = Objects.hash(obligor, obligee, borrowed, settled, linearId)

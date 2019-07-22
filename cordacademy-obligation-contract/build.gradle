@@ -20,7 +20,7 @@ cordapp {
         name "Cordacademy Obligation Contract"
         vendor "Cordacademy"
         licence "Apache License, Version 2.0"
-        versionId 1
+        versionId 2
     }
 }
 

@@ -1,9 +1,6 @@
 package io.cordacademy.obligation.contract
 
-import net.corda.core.contracts.CommandData
-import net.corda.core.contracts.Contract
-import net.corda.core.contracts.requireSingleCommand
-import net.corda.core.contracts.requireThat
+import net.corda.core.contracts.*
 import net.corda.core.transactions.LedgerTransaction
 import java.security.PublicKey
 
@@ -18,7 +15,7 @@ class ObligationContract : Contract {
          * Gets the identity of the obligation contract.
          */
         @JvmStatic
-        val ID: String = ObligationContract::class.qualifiedName!!
+        val ID: ContractClassName = ObligationContract::class.qualifiedName!!
     }
 
     /**
@@ -216,6 +213,50 @@ class ObligationContract : Contract {
             val input = tx.inputsOfType<ObligationState>().single()
             CONTRACT_RULE_INPUT_SETTLED using (input.borrowed == input.settled)
             CONTRACT_RULE_SIGNERS using (signers == input.participantKeys)
+        }
+    }
+
+    /**
+     * Represents the obligation default command.
+     */
+    class Default : ObligationContractCommand {
+
+        companion object {
+
+            internal const val CONTRACT_RULE_INPUTS =
+                "When defaulting an obligation, only one input state must be consumed."
+
+            internal const val CONTRACT_RULE_OUTPUTS =
+                "When defaulting an obligation, only one output state must be created."
+
+            internal const val CONTRACT_RULE_DEFAULTED_CHANGED =
+                "When defaulting an obligation, the default value must be set to true."
+
+            internal const val CONTRACT_RULE_ONLY_DEFAULTED_CHANGED =
+                "When defaulting an obligation, only the defaulted value must change."
+
+            internal const val CONTRACT_RULE_SIGNERS =
+                "When defaulting an obligation, all participants must sign the transaction."
+        }
+
+        /**
+         * Verifies the transaction.
+         *
+         * @param tx The transaction to be verified.
+         * @param signers A set of public keys that have been used to sign the transaction.
+         */
+        override fun verify(tx: LedgerTransaction, signers: Set<PublicKey>) = requireThat {
+
+            // Transaction verification
+            CONTRACT_RULE_INPUTS using (tx.inputs.size == 1)
+            CONTRACT_RULE_OUTPUTS using (tx.outputs.size == 1)
+
+            // State verification
+            val input = tx.inputsOfType<ObligationState>().single()
+            val output = tx.outputsOfType<ObligationState>().single()
+            CONTRACT_RULE_DEFAULTED_CHANGED using (output.defaulted == true)
+            CONTRACT_RULE_ONLY_DEFAULTED_CHANGED using (input.hashWithoutDefaulted() == output.hashWithoutDefaulted())
+            CONTRACT_RULE_SIGNERS using (signers == output.participantKeys)
         }
     }
 }
