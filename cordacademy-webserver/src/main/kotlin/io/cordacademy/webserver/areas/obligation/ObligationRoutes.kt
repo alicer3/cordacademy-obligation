@@ -17,6 +17,8 @@ import net.corda.core.contracts.Amount
 import net.corda.core.contracts.UniqueIdentifier
 import net.corda.core.messaging.CordaRPCOps
 import net.corda.core.messaging.startTrackedFlow
+import net.corda.core.node.services.Vault
+import net.corda.core.node.services.vault.QueryCriteria
 import net.corda.core.utilities.getOrThrow
 
 private typealias IssuanceFlow = ObligationIssuanceFlow.Initiator
@@ -27,8 +29,20 @@ private typealias ExitFlow = ObligationExitFlow.Initiator
 fun Route.obligationRoutes(rpc: CordaRPCOps) = route("/obligations") {
 
     get {
+        val id = call.parameters["id"]
+
+        val criteria = if (id != null) {
+            val linearId = UniqueIdentifier.fromString(id)
+            QueryCriteria.LinearStateQueryCriteria(
+                linearId = listOf(linearId),
+                status = Vault.StateStatus.ALL
+            )
+        } else {
+            QueryCriteria.VaultQueryCriteria()
+        }
+
         val obligations = rpc
-            .vaultQuery(ObligationState::class.java)
+            .vaultQueryByCriteria(criteria, ObligationState::class.java)
             .states
             .map { it.state.data.toDto() }
 
