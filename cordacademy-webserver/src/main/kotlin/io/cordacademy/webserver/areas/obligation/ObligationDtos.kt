@@ -9,8 +9,7 @@ data class ObligationOutputDto(
     val currency: String,
     val borrowed: BigDecimal,
     val settled: BigDecimal,
-    val outstanding: BigDecimal = borrowed - settled,
-    val formatted: String
+    val outstanding: BigDecimal = borrowed - settled
 )
 
 data class ObligationTransactionOutputDto(
