@@ -1,7 +1,10 @@
 package io.cordacademy.obligation.workflow
 
 import co.paralleluniverse.fibers.Suspendable
-import io.cordacademy.obligation.v1.contract.ObligationContract
+import io.cordacademy.obligation.v2.contract.ObligationContract
+import io.cordacademy.obligation.v2.contract.ObligationContractV2
+import io.cordacademy.obligation.v2.contract.default
+import io.cordacademy.obligation.v2.contract.participantKeys
 import io.cordacademy.obligation.workflow.common.InitiatorFlowLogic
 import io.cordacademy.obligation.workflow.common.ResponderFlowLogic
 import net.corda.core.contracts.UniqueIdentifier
@@ -10,20 +13,19 @@ import net.corda.core.transactions.SignedTransaction
 import net.corda.core.transactions.TransactionBuilder
 
 /**
- * Represents an initiator/responder flow pair for obligation exit.
+ * Represents an initiator/responder flow pair for obligation defaulting.
  */
-object ObligationExitFlow {
+object ObligationDefaultFlow {
 
     /**
      * Specifies flow version 1
      */
     private const val FLOW_VERSION_1 = 1
 
-
     /**
-     * Exits a fully settled obligation.
+     * Defaults on an obligation.
      *
-     * @param linearId The unique identifier of the obligation to exit.
+     * @param linearId The unique identifier of the obligation to default on.
      */
     @StartableByRPC
     @InitiatingFlow(version = FLOW_VERSION_1)
@@ -35,16 +37,16 @@ object ObligationExitFlow {
         override fun call(): SignedTransaction {
 
             setStep(INITIALIZING_FLOW)
-            val consumedObligation = findV1ObligationByLinearId(linearId)
-            val sessions = flowSessionsFor(
-                consumedObligation.state.data.participants - serviceHub.myInfo.legalIdentities
-            )
-            val ourSigningKey = serviceHub.myInfo.legalIdentities.first().owningKey
+            val consumedObligation = findV2ObligationByLinearId(linearId)
+            val defaultedObligation = consumedObligation.state.data.default()
+            val sessions = flowSessionsFor(defaultedObligation.participants - serviceHub.myInfo.legalIdentities)
+            val ourSigningKey = defaultedObligation.obligor.owningKey
 
             setStep(CREATING_TRANSACTION)
             val transaction = with(TransactionBuilder(firstNotary)) {
                 addInputState(consumedObligation)
-                addCommand(ObligationContract.Exit(), consumedObligation.state.data.participants.map { it.owningKey })
+                addOutputState(defaultedObligation, ObligationContractV2.ID)
+                addCommand(ObligationContract.Default(), defaultedObligation.participantKeys.toList())
             }
 
             setStep(VERIFYING_TRANSACTION)
@@ -75,7 +77,7 @@ object ObligationExitFlow {
     }
 
     /**
-     * Responds to exit of an obligation.
+     * Responds to defaulting of an obligation.
      *
      * @param session A session with the initiating counter-party.
      */

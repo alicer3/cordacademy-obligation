@@ -33,6 +33,7 @@ dependencies {
 
     // CorDapp Dependencies
     cordapp project(":cordacademy-obligation-v1-contract")
+    cordapp project(":cordacademy-obligation-v2-contract")
 
     // Test Dependencies
     testRuntimeOnly "$junit_group:junit-jupiter-engine:$junit_version"

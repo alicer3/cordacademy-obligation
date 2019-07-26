@@ -2,6 +2,7 @@ package io.cordacademy.obligation.workflow
 
 import co.paralleluniverse.fibers.Suspendable
 import io.cordacademy.obligation.v1.contract.ObligationContract
+import io.cordacademy.obligation.v1.contract.participantKeys
 import io.cordacademy.obligation.v1.contract.settle
 import io.cordacademy.obligation.workflow.common.InitiatorFlowLogic
 import io.cordacademy.obligation.workflow.common.ResponderFlowLogic
@@ -39,16 +40,16 @@ object ObligationSettlementFlow {
         override fun call(): SignedTransaction {
 
             setStep(INITIALIZING_FLOW)
-            val consumedObligation = findObligationByLinearId(linearId)
+            val consumedObligation = findV1ObligationByLinearId(linearId)
             val settledObligation = consumedObligation.state.data.settle(settled)
             val sessions = flowSessionsFor(settledObligation.participants - serviceHub.myInfo.legalIdentities)
-            val ourSigningKey = consumedObligation.state.data.obligor.owningKey
+            val ourSigningKey = settledObligation.obligor.owningKey
 
             setStep(CREATING_TRANSACTION)
             val transaction = with(TransactionBuilder(firstNotary)) {
                 addInputState(consumedObligation)
                 addOutputState(settledObligation, ObligationContract.ID)
-                addCommand(ObligationContract.Settle(), settledObligation.participants.map { it.owningKey })
+                addCommand(ObligationContract.Settle(), settledObligation.participantKeys.toList())
             }
 
             setStep(VERIFYING_TRANSACTION)
@@ -83,6 +84,6 @@ object ObligationSettlementFlow {
      *
      * @param session A session with the initiating counter-party.
      */
-    @InitiatedBy(ObligationSettlementFlow.Initiator::class)
+    @InitiatedBy(Initiator::class)
     class Responder(session: FlowSession) : ResponderFlowLogic(session)
 }

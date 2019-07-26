@@ -1,6 +1,7 @@
 package io.cordacademy.webserver
 
-import io.cordacademy.obligation.v1.contract.ObligationState
+import io.cordacademy.obligation.v2.contract.ObligationStateV1
+import io.cordacademy.obligation.v2.contract.ObligationStateV2
 import io.cordacademy.webserver.areas.obligation.ObligationOutputDto
 import net.corda.core.contracts.Amount
 import net.corda.core.identity.CordaX500Name
@@ -19,12 +20,24 @@ fun Amount.Companion.ofCurrency(value: BigDecimal?, currency: String?) =
 fun CordaRPCOps.resolveParty(name: String?) = wellKnownPartyFromX500Name(CordaX500Name.parse(name!!))
     ?: throw IllegalArgumentException("Unable to resolve party from name: $name.")
 
-fun ObligationState.toDto() = ObligationOutputDto(
+fun ObligationStateV1.toDto() = ObligationOutputDto(
     linearId = linearId.id.toString(),
     obligor = obligor.toString(),
     obligee = obligee.toString(),
     currency = borrowed.token.currencyCode,
     borrowed = borrowed.toDecimal(),
     settled = settled.toDecimal(),
-    outstanding = outstanding.toDecimal()
+    outstanding = outstanding.toDecimal(),
+    defaulted = null
+)
+
+fun ObligationStateV2.toDto() = ObligationOutputDto(
+    linearId = linearId.id.toString(),
+    obligor = obligor.toString(),
+    obligee = obligee.toString(),
+    currency = borrowed.token.currencyCode,
+    borrowed = borrowed.toDecimal(),
+    settled = settled.toDecimal(),
+    outstanding = outstanding.toDecimal(),
+    defaulted = defaulted
 )

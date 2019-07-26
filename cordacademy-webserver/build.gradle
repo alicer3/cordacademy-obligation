@@ -19,6 +19,7 @@ dependencies {
 
     // CorDapp Dependencies
     implementation project(":cordacademy-obligation-v1-contract")
+    implementation project(":cordacademy-obligation-v2-contract")
     implementation project(":cordacademy-obligation-workflow")
 
     // Ktor Dependencies

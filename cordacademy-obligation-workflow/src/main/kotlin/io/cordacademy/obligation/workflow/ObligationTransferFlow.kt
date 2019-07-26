@@ -39,7 +39,7 @@ object ObligationTransferFlow {
         override fun call(): SignedTransaction {
 
             setStep(INITIALIZING_FLOW)
-            val consumedObligation = findObligationByLinearId(linearId)
+            val consumedObligation = findV1ObligationByLinearId(linearId)
             val transferredObligation = consumedObligation.state.data.transfer(obligee)
             val participants = consumedObligation.state.data.participants union transferredObligation.participants
             val sessions = flowSessionsFor(participants - serviceHub.myInfo.legalIdentities)
@@ -84,6 +84,6 @@ object ObligationTransferFlow {
      *
      * @param session A session with the initiating counter-party.
      */
-    @InitiatedBy(ObligationTransferFlow.Initiator::class)
+    @InitiatedBy(Initiator::class)
     class Responder(session: FlowSession) : ResponderFlowLogic(session)
 }

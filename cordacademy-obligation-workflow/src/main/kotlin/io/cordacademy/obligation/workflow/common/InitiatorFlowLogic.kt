@@ -1,6 +1,8 @@
 package io.cordacademy.obligation.workflow.common
 
 import io.cordacademy.obligation.v1.contract.ObligationState
+import io.cordacademy.obligation.v2.contract.ObligationStateV1
+import io.cordacademy.obligation.v2.contract.ObligationStateV2
 import net.corda.core.contracts.StateAndRef
 import net.corda.core.contracts.UniqueIdentifier
 import net.corda.core.flows.*
@@ -62,20 +64,37 @@ abstract class InitiatorFlowLogic : FlowLogic<SignedTransaction>() {
     }
 
     /**
-     * Finds an obligation by linear ID.
+     * Finds a version 1 obligation by linear ID.
      *
      * @param linearId The linear ID of the obligation to find in the vault.
      * @return Returns an unconsumed obligation with the specified linear ID.
      * @throws FlowException if there is no unconsumed obligation in the vault with the specified linear ID.
      */
-    protected fun findObligationByLinearId(linearId: UniqueIdentifier): StateAndRef<ObligationState> {
+    protected fun findV1ObligationByLinearId(linearId: UniqueIdentifier): StateAndRef<ObligationStateV1> {
         val queryCriteria = QueryCriteria.LinearStateQueryCriteria(linearId = listOf(linearId))
         return serviceHub
             .vaultService
-            .queryBy<ObligationState>(criteria = queryCriteria)
+            .queryBy<ObligationStateV1>(criteria = queryCriteria)
             .states
             .singleOrNull()
-            ?: throw FlowException("Cannot find obligation with id $linearId.")
+            ?: throw FlowException("Cannot find version 1 obligation with id $linearId.")
+    }
+
+    /**
+     * Finds a version 2 obligation by linear ID.
+     *
+     * @param linearId The linear ID of the obligation to find in the vault.
+     * @return Returns an unconsumed obligation with the specified linear ID.
+     * @throws FlowException if there is no unconsumed obligation in the vault with the specified linear ID.
+     */
+    protected fun findV2ObligationByLinearId(linearId: UniqueIdentifier): StateAndRef<ObligationStateV2> {
+        val queryCriteria = QueryCriteria.LinearStateQueryCriteria(linearId = listOf(linearId))
+        return serviceHub
+            .vaultService
+            .queryBy<ObligationStateV2>(criteria = queryCriteria)
+            .states
+            .singleOrNull()
+            ?: throw FlowException("Cannot find version 2 obligation with id $linearId.")
     }
 
     /**

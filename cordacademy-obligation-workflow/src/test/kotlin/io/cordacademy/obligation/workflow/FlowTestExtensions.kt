@@ -10,15 +10,19 @@ import net.corda.testing.node.StartedMockNode
 import java.time.Duration
 import java.util.*
 
-val CORDAPPS = arrayOf("io.cordacademy.obligation.v1.contract")
+val CORDAPPS = arrayOf(
+    "io.cordacademy.obligation.v1.contract",
+    "io.cordacademy.obligation.v2.contract"
+)
 
 fun FlowTest.issue(
     initiator: StartedMockNode,
     obligor: Party,
     borrowed: Amount<Currency>,
-    timeout: Duration = Duration.ofSeconds(30)
+    timeout: Duration = Duration.ofSeconds(30),
+    version: Int = 1
 ): SignedTransaction {
-    val flow = ObligationIssuanceFlow.Initiator(obligor, borrowed)
+    val flow = ObligationIssuanceFlow.Initiator(obligor, borrowed, version)
     return run { initiator.startFlow(flow) }.getOrThrow(timeout)
 }
 
@@ -48,5 +52,14 @@ fun FlowTest.exit(
     timeout: Duration = Duration.ofSeconds(30)
 ): SignedTransaction {
     val flow = ObligationExitFlow.Initiator(linearId)
+    return run { initiator.startFlow(flow) }.getOrThrow(timeout)
+}
+
+fun FlowTest.default(
+    initiator: StartedMockNode,
+    linearId: UniqueIdentifier,
+    timeout: Duration = Duration.ofSeconds(30)
+): SignedTransaction {
+    val flow = ObligationDefaultFlow.Initiator(linearId)
     return run { initiator.startFlow(flow) }.getOrThrow(timeout)
 }

@@ -111,7 +111,7 @@ class ObligationContract : UpgradedContractWithLegacyConstraint<ObligationStateV
             CONTRACT_RULE_OUTPUTS using (tx.outputs.size == 1)
 
             // State verification
-            val output = tx.outputsOfType<ObligationState>().single()
+            val output = tx.outputsOfType<ObligationStateV2>().single()
             CONTRACT_RULE_AMOUNT_IS_POSITIVE using (output.borrowed.quantity > 0)
             CONTRACT_RULE_OBLIGEE_ISNT_OBLIGOR using (output.obligor != output.obligee)
             CONTRACT_RULE_IS_NOT_DEFAULTED using (output.defaulted != true)
@@ -158,8 +158,8 @@ class ObligationContract : UpgradedContractWithLegacyConstraint<ObligationStateV
             CONTRACT_RULE_OUTPUTS using (tx.outputs.size == 1)
 
             // State verification
-            val input = tx.inputsOfType<ObligationState>().single()
-            val output = tx.outputsOfType<ObligationState>().single()
+            val input = tx.inputsOfType<ObligationStateV2>().single()
+            val output = tx.outputsOfType<ObligationStateV2>().single()
             CONTRACT_RULE_OBLIGEE_CHANGED using (input.obligee != output.obligee)
             CONTRACT_RULE_ONLY_OBLIGEE_CHANGED using (input.hashWithoutObligee() == output.hashWithoutObligee())
             CONTRACT_RULE_OBLIGEE_ISNT_OBLIGOR using (output.obligee != output.obligor)
@@ -203,8 +203,8 @@ class ObligationContract : UpgradedContractWithLegacyConstraint<ObligationStateV
             CONTRACT_RULE_OUTPUTS using (tx.outputs.size == 1)
 
             // State verification
-            val input = tx.inputsOfType<ObligationState>().single()
-            val output = tx.outputsOfType<ObligationState>().single()
+            val input = tx.inputsOfType<ObligationStateV2>().single()
+            val output = tx.outputsOfType<ObligationStateV2>().single()
             CONTRACT_RULE_OUTPUTS_AMOUNT using (output.borrowed >= output.settled)
             CONTRACT_RULE_ONLY_SETTLED_CHANGED using (input.hashWithoutSettled() == output.hashWithoutSettled())
             CONTRACT_RULE_SIGNERS using (signers == output.participantKeys)
@@ -244,7 +244,7 @@ class ObligationContract : UpgradedContractWithLegacyConstraint<ObligationStateV
             CONTRACT_RULE_OUTPUTS using (tx.outputs.isEmpty())
 
             // State verification
-            val input = tx.inputsOfType<ObligationState>().single()
+            val input = tx.inputsOfType<ObligationStateV2>().single()
             CONTRACT_RULE_INPUT_SETTLED using (input.borrowed == input.settled)
             CONTRACT_RULE_SIGNERS using (signers == input.participantKeys)
         }
@@ -277,8 +277,8 @@ class ObligationContract : UpgradedContractWithLegacyConstraint<ObligationStateV
             CONTRACT_RULE_OUTPUTS using (tx.outputs.size == 1)
 
             // State verification
-            val input = tx.inputsOfType<ObligationState>().single()
-            val output = tx.outputsOfType<ObligationState>().single()
+            val input = tx.inputsOfType<ObligationStateV2>().single()
+            val output = tx.outputsOfType<ObligationStateV2>().single()
             CONTRACT_RULE_DEFAULTED_CHANGED using (output.defaulted == true)
             CONTRACT_RULE_ONLY_DEFAULTED_CHANGED using (input.hashWithoutDefaulted() == output.hashWithoutDefaulted())
             CONTRACT_RULE_SIGNERS using (signers == output.participantKeys)

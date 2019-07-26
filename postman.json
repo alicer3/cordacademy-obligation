@@ -288,6 +288,26 @@
 					"response": []
 				},
 				{
+					"name": "/obligations/v2",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:{{port_a}}/obligations/v2",
+							"host": [
+								"localhost"
+							],
+							"port": "{{port_a}}",
+							"path": [
+								"obligations",
+								"v2"
+							]
+						},
+						"description": "Gets all unconsumed obligation states."
+					},
+					"response": []
+				},
+				{
 					"name": "/obligations/issue",
 					"request": {
 						"method": "POST",
@@ -374,6 +394,102 @@
 							"path": [
 								"obligations",
 								"settle"
+							]
+						},
+						"description": "Settles an obligation."
+					},
+					"response": []
+				},
+				{
+					"name": "/obligations/upgrade/authorize",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"linearId\": \"REPLACE_WITH_A_REAL_LINEAR_ID\"\n}"
+						},
+						"url": {
+							"raw": "localhost:{{port_a}}/obligations/upgrade/authorize",
+							"host": [
+								"localhost"
+							],
+							"port": "{{port_a}}",
+							"path": [
+								"obligations",
+								"upgrade",
+								"authorize"
+							]
+						},
+						"description": "Settles an obligation."
+					},
+					"response": []
+				},
+				{
+					"name": "/obligations/upgrade/deauthorize",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"linearId\": \"REPLACE_WITH_A_REAL_LINEAR_ID\"\n}"
+						},
+						"url": {
+							"raw": "localhost:{{port_a}}/obligations/upgrade/deauthorize",
+							"host": [
+								"localhost"
+							],
+							"port": "{{port_a}}",
+							"path": [
+								"obligations",
+								"upgrade",
+								"deauthorize"
+							]
+						},
+						"description": "Settles an obligation."
+					},
+					"response": []
+				},
+				{
+					"name": "/obligations/upgrade/initiate",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"linearId\": \"REPLACE_WITH_A_REAL_LINEAR_ID\"\n}"
+						},
+						"url": {
+							"raw": "localhost:{{port_a}}/obligations/upgrade/initiate",
+							"host": [
+								"localhost"
+							],
+							"port": "{{port_a}}",
+							"path": [
+								"obligations",
+								"upgrade",
+								"initiate"
 							]
 						},
 						"description": "Settles an obligation."
@@ -696,6 +812,26 @@
 					"response": []
 				},
 				{
+					"name": "/obligations/v2",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:{{port_b}}/obligations/v2",
+							"host": [
+								"localhost"
+							],
+							"port": "{{port_b}}",
+							"path": [
+								"obligations",
+								"v2"
+							]
+						},
+						"description": "Gets all unconsumed obligation states."
+					},
+					"response": []
+				},
+				{
 					"name": "/obligations/issue",
 					"request": {
 						"method": "POST",
@@ -709,7 +845,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"obligor\": \"O=PartyC, L=Paris, C=FR\",\n\t\"borrowed\": 123.45,\n\t\"currency\": \"GBP\"\n}"
+							"raw": "{\n\t\"obligor\": \"O=PartyB, L=New York, C=US\",\n\t\"borrowed\": 123.45,\n\t\"currency\": \"GBP\"\n}"
 						},
 						"url": {
 							"raw": "localhost:{{port_b}}/obligations/issue",
@@ -740,7 +876,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"linearId\": \"REPLACE_WITH_A_REAL_LINEAR_ID\",\n\t\"obligee\": \"O=PartyA, L=London, C=GB\"\n}"
+							"raw": "{\n\t\"linearId\": \"REPLACE_WITH_A_REAL_LINEAR_ID\",\n\t\"obligee\": \"O=PartyC, L=Paris, C=FR\"\n}"
 						},
 						"url": {
 							"raw": "localhost:{{port_b}}/obligations/transfer",
@@ -789,6 +925,133 @@
 					"response": []
 				},
 				{
+					"name": "/obligations/default",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"linearId\": \"REPLACE_WITH_A_REAL_LINEAR_ID\"\n}"
+						},
+						"url": {
+							"raw": "localhost:{{port_b}}/obligations/settle",
+							"host": [
+								"localhost"
+							],
+							"port": "{{port_b}}",
+							"path": [
+								"obligations",
+								"settle"
+							]
+						},
+						"description": "Settles an obligation."
+					},
+					"response": []
+				},
+				{
+					"name": "/obligations/upgrade/authorize",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"linearId\": \"REPLACE_WITH_A_REAL_LINEAR_ID\"\n}"
+						},
+						"url": {
+							"raw": "localhost:{{port_b}}/obligations/upgrade/authorize",
+							"host": [
+								"localhost"
+							],
+							"port": "{{port_b}}",
+							"path": [
+								"obligations",
+								"upgrade",
+								"authorize"
+							]
+						},
+						"description": "Settles an obligation."
+					},
+					"response": []
+				},
+				{
+					"name": "/obligations/upgrade/deauthorize",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"linearId\": \"REPLACE_WITH_A_REAL_LINEAR_ID\"\n}"
+						},
+						"url": {
+							"raw": "localhost:{{port_b}}/obligations/upgrade/deauthorize",
+							"host": [
+								"localhost"
+							],
+							"port": "{{port_b}}",
+							"path": [
+								"obligations",
+								"upgrade",
+								"deauthorize"
+							]
+						},
+						"description": "Settles an obligation."
+					},
+					"response": []
+				},
+				{
+					"name": "/obligations/upgrade/initiate",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"linearId\": \"REPLACE_WITH_A_REAL_LINEAR_ID\"\n}"
+						},
+						"url": {
+							"raw": "localhost:{{port_b}}/obligations/upgrade/initiate",
+							"host": [
+								"localhost"
+							],
+							"port": "{{port_b}}",
+							"path": [
+								"obligations",
+								"upgrade",
+								"initiate"
+							]
+						},
+						"description": "Settles an obligation."
+					},
+					"response": []
+				},
+				{
 					"name": "/obligations/exit",
 					"request": {
 						"method": "DELETE",
@@ -818,28 +1081,6 @@
 						"description": "Exits a fully settled obligation."
 					},
 					"response": []
-				}
-			],
-			"event": [
-				{
-					"listen": "prerequest",
-					"script": {
-						"id": "66b3b9ea-d2a8-4670-8211-e02714676145",
-						"type": "text/javascript",
-						"exec": [
-							""
-						]
-					}
-				},
-				{
-					"listen": "test",
-					"script": {
-						"id": "55a04def-27fe-4a41-b675-12e4d6b993bd",
-						"type": "text/javascript",
-						"exec": [
-							""
-						]
-					}
 				}
 			]
 		},
@@ -1126,6 +1367,26 @@
 					"response": []
 				},
 				{
+					"name": "/obligations/v2",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:{{port_c}}/obligations/v2",
+							"host": [
+								"localhost"
+							],
+							"port": "{{port_c}}",
+							"path": [
+								"obligations",
+								"v2"
+							]
+						},
+						"description": "Gets all unconsumed obligation states."
+					},
+					"response": []
+				},
+				{
 					"name": "/obligations/issue",
 					"request": {
 						"method": "POST",
@@ -1139,7 +1400,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"obligor\": \"O=PartyA, L=London, C=GB\",\n\t\"borrowed\": 123.45,\n\t\"currency\": \"GBP\"\n}"
+							"raw": "{\n\t\"obligor\": \"O=PartyB, L=New York, C=US\",\n\t\"borrowed\": 123.45,\n\t\"currency\": \"GBP\"\n}"
 						},
 						"url": {
 							"raw": "localhost:{{port_c}}/obligations/issue",
@@ -1170,7 +1431,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"linearId\": \"REPLACE_WITH_A_REAL_LINEAR_ID\",\n\t\"obligee\": \"O=PartyB, L=New York, C=US\"\n}"
+							"raw": "{\n\t\"linearId\": \"REPLACE_WITH_A_REAL_LINEAR_ID\",\n\t\"obligee\": \"O=PartyC, L=Paris, C=FR\"\n}"
 						},
 						"url": {
 							"raw": "localhost:{{port_c}}/obligations/transfer",
@@ -1219,6 +1480,102 @@
 					"response": []
 				},
 				{
+					"name": "/obligations/upgrade/authorize",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"linearId\": \"REPLACE_WITH_A_REAL_LINEAR_ID\"\n}"
+						},
+						"url": {
+							"raw": "localhost:{{port_c}}/obligations/upgrade/authorize",
+							"host": [
+								"localhost"
+							],
+							"port": "{{port_c}}",
+							"path": [
+								"obligations",
+								"upgrade",
+								"authorize"
+							]
+						},
+						"description": "Settles an obligation."
+					},
+					"response": []
+				},
+				{
+					"name": "/obligations/upgrade/deauthorize",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"linearId\": \"REPLACE_WITH_A_REAL_LINEAR_ID\"\n}"
+						},
+						"url": {
+							"raw": "localhost:{{port_c}}/obligations/upgrade/deauthorize",
+							"host": [
+								"localhost"
+							],
+							"port": "{{port_c}}",
+							"path": [
+								"obligations",
+								"upgrade",
+								"deauthorize"
+							]
+						},
+						"description": "Settles an obligation."
+					},
+					"response": []
+				},
+				{
+					"name": "/obligations/upgrade/initiate",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"linearId\": \"REPLACE_WITH_A_REAL_LINEAR_ID\"\n}"
+						},
+						"url": {
+							"raw": "localhost:{{port_c}}/obligations/upgrade/initiate",
+							"host": [
+								"localhost"
+							],
+							"port": "{{port_c}}",
+							"path": [
+								"obligations",
+								"upgrade",
+								"initiate"
+							]
+						},
+						"description": "Settles an obligation."
+					},
+					"response": []
+				},
+				{
 					"name": "/obligations/exit",
 					"request": {
 						"method": "DELETE",
@@ -1248,28 +1605,6 @@
 						"description": "Exits a fully settled obligation."
 					},
 					"response": []
-				}
-			],
-			"event": [
-				{
-					"listen": "prerequest",
-					"script": {
-						"id": "69edf2d4-b5b2-4f27-944b-a7a23cfbacf7",
-						"type": "text/javascript",
-						"exec": [
-							""
-						]
-					}
-				},
-				{
-					"listen": "test",
-					"script": {
-						"id": "ae862aed-7e46-4397-8b79-f60e3c6e914a",
-						"type": "text/javascript",
-						"exec": [
-							""
-						]
-					}
 				}
 			]
 		}
