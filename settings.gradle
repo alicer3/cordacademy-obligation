@@ -1,6 +1,6 @@
 rootProject.name = 'cordacademy-obligation'
 
-include 'cordacademy-obligation-contract'
+include 'cordacademy-obligation-v1-contract'
 include 'cordacademy-obligation-workflow'
 include 'cordacademy-webserver'
 include 'cordacademy-test'

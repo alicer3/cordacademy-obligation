@@ -1,4 +1,4 @@
-package io.cordacademy.obligation.contract
+package io.cordacademy.obligation.v1.contract
 
 import io.cordacademy.test.ContractTest
 import io.cordacademy.test.IDENTITY_A
@@ -8,7 +8,10 @@ import net.corda.finance.POUNDS
 import net.corda.testing.node.ledger
 import org.junit.jupiter.api.Test
 
-class ObligationTransferContractTests : ContractTest(CORDAPPS, CONTRACTS) {
+class ObligationTransferContractTests : ContractTest(
+    CORDAPPS,
+    CONTRACTS
+) {
 
     @Test
     fun `When transferring an obligation, the transaction must include the Transfer command`() {

@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "b8cd72f9-c9b6-4384-9aa8-a7f382c91d38",
+		"_postman_id": "a23b2ed5-6d15-46d1-b75b-05f5ffee0ac3",
 		"name": "Cordacademy Obligation CorDapp",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -13,10 +13,6 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
 						"url": {
 							"raw": "localhost:{{port_a}}/admin/nmc/clear",
 							"host": [
@@ -38,10 +34,6 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
 						"url": {
 							"raw": "localhost:{{port_a}}/admin/nmc/refresh",
 							"host": [
@@ -63,10 +55,6 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
 						"url": {
 							"raw": "localhost:{{port_a}}/admin/flows/registered",
 							"host": [
@@ -88,10 +76,6 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
 						"url": {
 							"raw": "localhost:{{port_a}}/admin/flows/draining",
 							"host": [
@@ -165,10 +149,6 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
 						"url": {
 							"raw": "localhost:{{port_a}}/nodes",
 							"host": [
@@ -188,10 +168,6 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
 						"url": {
 							"raw": "localhost:{{port_a}}/nodes/time",
 							"host": [
@@ -212,10 +188,6 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
 						"url": {
 							"raw": "localhost:{{port_a}}/nodes/local",
 							"host": [
@@ -236,10 +208,6 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
 						"url": {
 							"raw": "localhost:{{port_a}}/nodes/network",
 							"host": [
@@ -260,10 +228,6 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
 						"url": {
 							"raw": "localhost:{{port_a}}/nodes/shutdown",
 							"host": [
@@ -304,22 +268,19 @@
 					"response": []
 				},
 				{
-					"name": "/obligations",
+					"name": "/obligations/v1",
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
 						"url": {
-							"raw": "localhost:{{port_a}}/obligations",
+							"raw": "localhost:{{port_a}}/obligations/v1",
 							"host": [
 								"localhost"
 							],
 							"port": "{{port_a}}",
 							"path": [
-								"obligations"
+								"obligations",
+								"v1"
 							]
 						},
 						"description": "Gets all unconsumed obligation states."
@@ -460,10 +421,6 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
 						"url": {
 							"raw": "localhost:{{port_b}}/admin/nmc/clear",
 							"host": [
@@ -485,10 +442,6 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
 						"url": {
 							"raw": "localhost:{{port_b}}/admin/nmc/refresh",
 							"host": [
@@ -510,10 +463,6 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
 						"url": {
 							"raw": "localhost:{{port_b}}/admin/flows/registered",
 							"host": [
@@ -535,10 +484,6 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
 						"url": {
 							"raw": "localhost:{{port_b}}/admin/flows/draining",
 							"host": [
@@ -612,10 +557,6 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
 						"url": {
 							"raw": "localhost:{{port_b}}/nodes",
 							"host": [
@@ -635,10 +576,6 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
 						"url": {
 							"raw": "localhost:{{port_b}}/nodes/time",
 							"host": [
@@ -659,10 +596,6 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
 						"url": {
 							"raw": "localhost:{{port_b}}/nodes/local",
 							"host": [
@@ -683,10 +616,6 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
 						"url": {
 							"raw": "localhost:{{port_b}}/nodes/network",
 							"host": [
@@ -707,10 +636,6 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
 						"url": {
 							"raw": "localhost:{{port_b}}/nodes/shutdown",
 							"host": [
@@ -751,22 +676,19 @@
 					"response": []
 				},
 				{
-					"name": "/obligations",
+					"name": "/obligations/v1",
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
 						"url": {
-							"raw": "localhost:{{port_b}}/obligations",
+							"raw": "localhost:{{port_b}}/obligations/v1",
 							"host": [
 								"localhost"
 							],
 							"port": "{{port_b}}",
 							"path": [
-								"obligations"
+								"obligations",
+								"v1"
 							]
 						},
 						"description": "Gets all unconsumed obligation states."
@@ -929,10 +851,6 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
 						"url": {
 							"raw": "localhost:{{port_c}}/admin/nmc/clear",
 							"host": [
@@ -954,10 +872,6 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
 						"url": {
 							"raw": "localhost:{{port_c}}/admin/nmc/refresh",
 							"host": [
@@ -979,10 +893,6 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
 						"url": {
 							"raw": "localhost:{{port_c}}/admin/flows/registered",
 							"host": [
@@ -1004,10 +914,6 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
 						"url": {
 							"raw": "localhost:{{port_c}}/admin/flows/draining",
 							"host": [
@@ -1081,10 +987,6 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
 						"url": {
 							"raw": "localhost:{{port_c}}/nodes",
 							"host": [
@@ -1104,10 +1006,6 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
 						"url": {
 							"raw": "localhost:{{port_c}}/nodes/time",
 							"host": [
@@ -1128,10 +1026,6 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
 						"url": {
 							"raw": "localhost:{{port_c}}/nodes/local",
 							"host": [
@@ -1152,10 +1046,6 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
 						"url": {
 							"raw": "localhost:{{port_c}}/nodes/network",
 							"host": [
@@ -1176,10 +1066,6 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
 						"url": {
 							"raw": "localhost:{{port_c}}/nodes/shutdown",
 							"host": [
@@ -1220,22 +1106,19 @@
 					"response": []
 				},
 				{
-					"name": "/obligations",
+					"name": "/obligations/v1",
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
 						"url": {
-							"raw": "localhost:{{port_c}}/obligations",
+							"raw": "localhost:{{port_c}}/obligations/v1",
 							"host": [
 								"localhost"
 							],
 							"port": "{{port_c}}",
 							"path": [
-								"obligations"
+								"obligations",
+								"v1"
 							]
 						},
 						"description": "Gets all unconsumed obligation states."

@@ -1,6 +1,6 @@
 package io.cordacademy.webserver
 
-import io.cordacademy.obligation.contract.ObligationState
+import io.cordacademy.obligation.v1.contract.ObligationState
 import io.cordacademy.webserver.areas.obligation.ObligationOutputDto
 import net.corda.core.contracts.Amount
 import net.corda.core.identity.CordaX500Name

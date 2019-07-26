@@ -1,7 +1,7 @@
 import io.cordacademy.test.IntegrationTest
 
 class NodeDriver : IntegrationTest(
-    "io.cordacademy.obligation.contract",
+    "io.cordacademy.obligation.v1.contract",
     "io.cordacademy.obligation.workflow"
 ) {
     companion object {

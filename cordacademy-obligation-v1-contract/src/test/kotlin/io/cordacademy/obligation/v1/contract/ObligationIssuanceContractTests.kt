@@ -1,4 +1,4 @@
-package io.cordacademy.obligation.contract
+package io.cordacademy.obligation.v1.contract
 
 import io.cordacademy.test.ContractTest
 import io.cordacademy.test.IDENTITY_A
@@ -7,7 +7,10 @@ import net.corda.finance.POUNDS
 import net.corda.testing.node.ledger
 import org.junit.jupiter.api.Test
 
-class ObligationIssuanceContractTests : ContractTest(CORDAPPS, CONTRACTS) {
+class ObligationIssuanceContractTests : ContractTest(
+    CORDAPPS,
+    CONTRACTS
+) {
 
     @Test
     fun `When issuing an obligation, the transaction must include the Issue command`() {

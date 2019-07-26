@@ -1,4 +1,4 @@
-package io.cordacademy.obligation.contract
+package io.cordacademy.obligation.v1.contract
 
 import net.corda.core.contracts.Amount
 import net.corda.core.identity.AbstractParty

@@ -1,4 +1,4 @@
-package io.cordacademy.obligation.contract
+package io.cordacademy.obligation.v1.contract
 
 import io.cordacademy.test.ContractTest
 import io.cordacademy.test.IDENTITY_A
@@ -6,7 +6,10 @@ import io.cordacademy.test.IDENTITY_B
 import net.corda.testing.node.ledger
 import org.junit.jupiter.api.Test
 
-class ObligationExitContractTests : ContractTest(CORDAPPS, CONTRACTS) {
+class ObligationExitContractTests : ContractTest(
+    CORDAPPS,
+    CONTRACTS
+) {
 
     @Test
     fun `When exiting an obligation, the transaction must include the Exit command`() {

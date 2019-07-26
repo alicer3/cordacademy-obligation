@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.fail
 import kotlin.test.assertEquals
 
-class ObligationIssuanceFlowTests : FlowTest("io.cordacademy.obligation.contract") {
+class ObligationIssuanceFlowTests : FlowTest(*CORDAPPS) {
 
     override fun initialize() {
         nodeB.registerInitiatedFlow<ObligationIssuanceFlow.Responder>()

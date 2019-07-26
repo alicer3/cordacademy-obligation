@@ -1,4 +1,4 @@
-package io.cordacademy.obligation.contract
+package io.cordacademy.obligation.v1.contract
 
 import net.corda.core.contracts.CommandData
 import net.corda.core.contracts.Contract

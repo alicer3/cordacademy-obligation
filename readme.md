@@ -1,10 +1,14 @@
 ![Cordacademy logo](https://raw.githubusercontent.com/cordacademy/cordacademy.github.io/master/content/images/logo-combined.png)
 
-# Obligation CorDapp
+# Obligation CorDapp (Versioned)
 
 **Demonstrates the ability to issue, transfer, settle and exit obligation-like agreements.**
 
 Obligations are simple states that represent an agreement for an amount of currency between an obligor (otherwise known as a debtor or borrower) and an obligee (otherwise known as a creditor or lender). Any participant can issue an obligation to any other participant on the network. Obligations can be settled partially, or in full. Once an obligation has been fully settled, it can be exited, at which point, the evolution of the obligation state ceases.
+
+### Versioning
+
+This is a versioned implementation of the obligation CorDapp. It is intended to demonstrate hash constraints and explicit upgrades.
 
 ## [Contract](https://github.com/cordacademy/cordacademy-obligation/tree/master/cordacademy-obligation-contract/src/main/kotlin/io/cordacademy/obligation/contract)
 

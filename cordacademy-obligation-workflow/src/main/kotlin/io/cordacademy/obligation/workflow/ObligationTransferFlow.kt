@@ -1,8 +1,8 @@
 package io.cordacademy.obligation.workflow
 
 import co.paralleluniverse.fibers.Suspendable
-import io.cordacademy.obligation.contract.ObligationContract
-import io.cordacademy.obligation.contract.transfer
+import io.cordacademy.obligation.v1.contract.ObligationContract
+import io.cordacademy.obligation.v1.contract.transfer
 import io.cordacademy.obligation.workflow.common.InitiatorFlowLogic
 import io.cordacademy.obligation.workflow.common.ResponderFlowLogic
 import net.corda.core.contracts.UniqueIdentifier

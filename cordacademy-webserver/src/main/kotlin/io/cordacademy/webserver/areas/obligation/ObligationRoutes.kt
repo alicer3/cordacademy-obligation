@@ -1,6 +1,6 @@
 package io.cordacademy.webserver.areas.obligation
 
-import io.cordacademy.obligation.contract.ObligationState
+import io.cordacademy.obligation.v1.contract.ObligationState
 import io.cordacademy.obligation.workflow.ObligationExitFlow
 import io.cordacademy.obligation.workflow.ObligationIssuanceFlow
 import io.cordacademy.obligation.workflow.ObligationSettlementFlow
@@ -28,7 +28,7 @@ private typealias ExitFlow = ObligationExitFlow.Initiator
 
 fun Route.obligationRoutes(rpc: CordaRPCOps) = route("/obligations") {
 
-    get {
+    get("/v1") {
         val id = call.parameters["id"]
 
         val criteria = if (id != null) {

@@ -1,6 +1,6 @@
 package io.cordacademy.obligation.workflow.common
 
-import io.cordacademy.obligation.contract.ObligationState
+import io.cordacademy.obligation.v1.contract.ObligationState
 import net.corda.core.contracts.StateAndRef
 import net.corda.core.contracts.UniqueIdentifier
 import net.corda.core.flows.*

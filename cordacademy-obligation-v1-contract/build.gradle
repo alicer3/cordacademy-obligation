@@ -12,7 +12,7 @@ apply plugin: 'net.corda.plugins.cordapp'
 
 cordapp {
     signing {
-        enabled = true
+        enabled = false
     }
     targetPlatformVersion cordapp_platform_version
     minimumPlatformVersion cordapp_platform_version

@@ -1,9 +1,9 @@
 package io.cordacademy.obligation.workflow
 
 import co.paralleluniverse.fibers.Suspendable
-import io.cordacademy.obligation.contract.ObligationContract
-import io.cordacademy.obligation.contract.ObligationState
-import io.cordacademy.obligation.contract.participantKeys
+import io.cordacademy.obligation.v1.contract.ObligationContract
+import io.cordacademy.obligation.v1.contract.ObligationState
+import io.cordacademy.obligation.v1.contract.participantKeys
 import io.cordacademy.obligation.workflow.common.InitiatorFlowLogic
 import io.cordacademy.obligation.workflow.common.ResponderFlowLogic
 import net.corda.core.contracts.Amount

@@ -1,13 +1,13 @@
 package io.cordacademy.obligation.workflow
 
-import io.cordacademy.obligation.contract.ObligationState
+import io.cordacademy.obligation.v1.contract.ObligationState
 import io.cordacademy.test.FlowTest
 import net.corda.finance.POUNDS
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.fail
 import kotlin.test.assertEquals
 
-class ObligationSettlementFlowTests : FlowTest("io.cordacademy.obligation.contract") {
+class ObligationSettlementFlowTests : FlowTest(*CORDAPPS) {
 
     override fun initialize() {
         listOf(nodeA, nodeB, nodeC).forEach {

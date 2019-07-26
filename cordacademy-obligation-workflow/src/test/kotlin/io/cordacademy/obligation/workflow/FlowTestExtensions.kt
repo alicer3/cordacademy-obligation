@@ -10,6 +10,8 @@ import net.corda.testing.node.StartedMockNode
 import java.time.Duration
 import java.util.*
 
+val CORDAPPS = arrayOf("io.cordacademy.obligation.v1.contract")
+
 fun FlowTest.issue(
     initiator: StartedMockNode,
     obligor: Party,
