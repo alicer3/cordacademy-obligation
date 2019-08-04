@@ -15,7 +15,7 @@ class ObligationContract : Contract {
          * Gets the identity of the obligation contract.
          */
         @JvmStatic
-        val ID: ContractClassName = ObligationContract::class.qualifiedName!!
+        val ID: ContractClassName = this::class.java.enclosingClass.canonicalName
     }
 
     /**
@@ -25,7 +25,13 @@ class ObligationContract : Contract {
      */
     override fun verify(tx: LedgerTransaction) {
         val command = tx.commands.requireSingleCommand<ObligationContractCommand>()
-        command.value.verify(tx, command.signers.toSet())
+        when (command.value) {
+            is Issue,
+            is Transfer,
+            is Settle,
+            is Exit -> command.value.verify(tx, command.signers.toSet())
+            else -> throw IllegalArgumentException("Unrecognised command.")
+        }
     }
 
     /**

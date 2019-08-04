@@ -26,7 +26,6 @@ fun ObligationState.toDto() = ObligationOutputDto(
     currency = borrowed.token.currencyCode,
     borrowed = borrowed.toDecimal(),
     settled = settled.toDecimal(),
-    outstanding = outstanding.toDecimal(),
     defaulted = defaulted,
-    formatted = toString()
+    outstanding = outstanding.toDecimal()
 )

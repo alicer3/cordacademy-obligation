@@ -10,8 +10,7 @@ data class ObligationOutputDto(
     val borrowed: BigDecimal,
     val settled: BigDecimal,
     val outstanding: BigDecimal = borrowed - settled,
-    val defaulted: Boolean?,
-    val formatted: String
+    val defaulted: Boolean?
 )
 
 data class ObligationTransactionOutputDto(
