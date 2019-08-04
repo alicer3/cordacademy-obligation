@@ -1,11 +1,12 @@
 import io.cordacademy.test.IntegrationTest
 
 class NodeDriver : IntegrationTest(
-    "io.cordacademy.obligation.contract",
-    "io.cordacademy.obligation.workflow"
+    // TODO : Add cordapp packages here; for example...
+    // "my.first.cordapp.contract",
+    // "my.first.cordapp.workflow"
 ) {
     companion object {
         @JvmStatic
-        fun main(vararg args: String) = NodeDriver().start()
+        fun main(vararg args: String) = NodeDriver().start {}
     }
 }
