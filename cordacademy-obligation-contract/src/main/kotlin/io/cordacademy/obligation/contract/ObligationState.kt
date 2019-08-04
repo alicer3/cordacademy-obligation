@@ -40,18 +40,4 @@ data class ObligationState(
      * Gets the amount that is outstanding on the obligation.
      */
     val outstanding: Amount<Currency> get() = borrowed - settled
-
-    /**
-     * Gets the string representation of this object instance.
-     *
-     * @return Returns the string representation of this object instance.
-     */
-    override fun toString() = buildString {
-        appendln("Obligation version = 1")
-        appendln("obligor = $obligor")
-        appendln("obligee = $obligee")
-        appendln("borrowed = $borrowed")
-        appendln("settled = $settled")
-        appendln("outstanding = $outstanding")
-    }
 }
