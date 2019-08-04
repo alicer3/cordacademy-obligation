@@ -13,7 +13,7 @@ class ObligationContract : UpgradedContractWithLegacyConstraint<ObligationStateV
          * Gets the identity of the obligation contract.
          */
         @JvmStatic
-        val ID: String = ObligationContract::class.qualifiedName!!
+        val ID: ContractClassName = this::class.java.enclosingClass.canonicalName
 
         /**
          * Gets the JAR hash of the legacy (version 1) contract.
@@ -55,7 +55,14 @@ class ObligationContract : UpgradedContractWithLegacyConstraint<ObligationStateV
      */
     override fun verify(tx: LedgerTransaction) {
         val command = tx.commands.requireSingleCommand<ObligationContractCommand>()
-        command.value.verify(tx, command.signers.toSet())
+        when (command.value) {
+            is Issue,
+            is Transfer,
+            is Settle,
+            is Exit,
+            is Default -> command.value.verify(tx, command.signers.toSet())
+            else -> throw IllegalArgumentException("Unrecognised command.")
+        }
     }
 
     /**
@@ -250,6 +257,9 @@ class ObligationContract : UpgradedContractWithLegacyConstraint<ObligationStateV
         }
     }
 
+    /**
+     * Represents the obligation default command.
+     */
     class Default : ObligationContractCommand {
 
         companion object {
