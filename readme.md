@@ -6,6 +6,13 @@
 
 Obligations are simple states that represent an agreement for an amount of currency between an obligor (otherwise known as a debtor or borrower) and an obligee (otherwise known as a creditor or lender). Any participant can issue an obligation to any other participant on the network. Obligations can be settled partially, or in full. Once an obligation has been fully settled, it can be exited, at which point, the evolution of the obligation state ceases.
 
+## Further Reading
+
+- [Branching Strategy](https://github.com/cordacademy/cordacademy-obligation/blob/master/docs/branching-strategy.md)
+- [Workflow Upgrade Laboratory](https://github.com/cordacademy/cordacademy-obligation/blob/master/docs/labs-upgrades-workflow.md)
+
+
+
 ## [Contract](https://github.com/cordacademy/cordacademy-obligation/tree/master/cordacademy-obligation-contract/src/main/kotlin/io/cordacademy/obligation/contract)
 
 Defines the state and contract for the obligation CorDapp. The contract packages are versioned to allow for future upgrades.
