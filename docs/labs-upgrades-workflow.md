@@ -42,7 +42,7 @@ Flows provide a mechanism for nodes to have conversations with each other. In th
 
 Conversations between nodes follow a protocol and must remain synchronised with each other. What one node requests from a counter-party, the counter-party must respond with. Breaking that synchronisation between nodes would likely cause unexpected behaviour or an all-out flow failure.
 
-Flows are _usually_ written in pairs, for example an **Initiator** flow and a **Responder**.
+Flows are _usually_ written in pairs, for example an **Initiator** flow and a **Responder** flow.
 
 
 
@@ -161,7 +161,7 @@ From PartyA, select the POST **/obligations/issue** end-point. It's already conf
 	"obligor": "O=PartyB, L=New York, C=US",
 	"borrowed": 123.45,
 	"currency": "GBP",
-	"anonymous" true
+	"anonymous": true
 }
 ```
 
