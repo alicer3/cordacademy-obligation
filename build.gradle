@@ -142,11 +142,9 @@ task deployNodes(type: net.corda.plugins.Cordform, dependsOn: ['jar']) {
     }
 }
 
-task upgradeNodes(dependsOn: ['deployNodes']) {
-    doFirst {
-        copy {
-            from "build/nodes"
-            into "backup/nodes"
-        }
+task backupNodes {
+    copy {
+        from "build/nodes"
+        into "backup/nodes"
     }
 }
