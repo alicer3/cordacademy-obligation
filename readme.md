@@ -10,6 +10,7 @@ Obligations are simple states that represent an agreement for an amount of curre
 
 - [Branching Strategy](https://github.com/cordacademy/cordacademy-obligation/blob/master/docs/branching-strategy.md)
 - [Workflow Upgrade Laboratory](https://github.com/cordacademy/cordacademy-obligation/blob/master/docs/labs-upgrades-workflow.md)
+- [State/Contract Upgrade Laboratory (Explicit)](https://github.com/cordacademy/cordacademy-obligation/blob/master/docs/labs-upgrades-contract-explicit.md)
 
 
 
