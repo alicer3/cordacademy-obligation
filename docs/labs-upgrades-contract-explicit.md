@@ -40,6 +40,24 @@ States are immutable data objects, composed of arbitrary information and can evo
 
 
 
+## Understanding Contracts
+
+### R3's Definition
+
+- A valid transaction must be accepted by the contract of each of its input and output states
+- Contracts are written in a JVM programming language (e.g. Java or Kotlin)
+- Contract execution id deterministic and its acceptance of a transaction is based on the transaction's contents alone.
+
+### Expanding The Definition
+
+Contracts represent constraints which govern how states are created, evolved and consumed. Typically, contracts are constructed of one or more commands, each of which defines a responsibility to verify a transaction that may create, and/or consume one or more states.
+
+Contract commands are not limited to verification of states only. They can also verify other transaction information; for example, attachments.
+
+Contract commands must always execute in a deterministic manner, so that what is true now, will always be true in future, and what is false now, will always be false in future. This is to ensure that transaction chains remain valid and there can be no disagreement over historic consensus.
+
+
+
 ## Laboratory
 
 In this laboratory we will understand how to deploy a Corda network running version 1 of the obligation CorDapp. We will create an obligation between two participants on the network and then upgrade their nodes to use version 2 of the CorDapp. This demonstrates their ability to interact with each other using version 2 of the CorDapp, and how they can still communicate with other nodes running version 1.
@@ -183,7 +201,7 @@ Next you need to initiate the upgrade, which will consume version 1 of the state
 
 From PartyA's node, enter the ID into the body for **/obligations/upgrade/initiate**
 
-```
+```json
 {
     "linearId": "ID_OF_YOUR_OBLIGATION"
 }
