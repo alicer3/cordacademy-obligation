@@ -93,6 +93,34 @@ tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile) {
 
 task deployNodes(type: net.corda.plugins.Cordform, dependsOn: ['jar']) {
 
+    doFirst {
+        copy {
+            from "build/nodes"
+            into "backup/nodes"
+        }
+    }
+
+    doLast {
+        copy {
+            from "backup/nodes/PartyC"
+            into "build/nodes/PartyC"
+        }
+        copy {
+            from "backup/nodes/PartyC_node.conf"
+            into "build/nodes/"
+        }
+        copy {
+            from "backup/nodes/PartyA/"
+            include "*.db"
+            into "build/nodes/PartyA/"
+        }
+        copy {
+            from "backup/nodes/PartyB/"
+            include "*.db"
+            into "build/nodes/PartyB/"
+        }
+    }
+
     nodeDefaults {
         projectCordapp {
             deploy = false
