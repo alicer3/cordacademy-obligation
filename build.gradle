@@ -65,8 +65,8 @@ dependencies {
     cordaCompile "$corda_group:corda-core:$corda_release_version"
 
     // CorDapp Dependencies
-     cordapp project(":cordacademy-obligation-contract")
-     cordapp project(":cordacademy-obligation-workflow")
+    cordapp project(":cordacademy-obligation-contract")
+    cordapp project(":cordacademy-obligation-workflow")
 
     // Corda Deployment Dependencies
     cordaCompile "$corda_group:corda:$corda_release_version"
@@ -91,40 +91,6 @@ tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile) {
 }
 
 task deployNodes(type: net.corda.plugins.Cordform, dependsOn: ['jar']) {
-
-    doFirst {
-        copy {
-            from 'build/nodes'
-            into 'backup/nodes'
-        }
-    }
-
-    doLast {
-        copy {
-            from 'backup/nodes/Notary'
-            into 'build/nodes/Notary'
-        }
-        copy {
-            from 'backup/nodes/PartyC'
-            into 'build/nodes/PartyC'
-        }
-        copy {
-            from 'backup/nodes/PartyA/'
-            include '*.db'
-            into 'build/nodes/PartyA/'
-        }
-        copy {
-            from 'backup/nodes/PartyB/'
-            include '*.db'
-            into 'build/nodes/PartyB/'
-        }
-        copy {
-            from 'cordacademy-obligation-contract/build/libs/cordacademy-obligation-contract.jar'
-            from 'cordacademy-obligation-workflow/build/libs/cordacademy-obligation-workflow.jar'
-            into 'build/nodes/PartyA/cordapps/'
-            into 'build/nodes/PartyB/cordapps/'
-        }
-    }
 
     nodeDefaults {
         projectCordapp {
@@ -170,6 +136,17 @@ task deployNodes(type: net.corda.plugins.Cordform, dependsOn: ['jar']) {
         rpcSettings {
             address("localhost:10013")
             adminAddress("localhost:10053")
+        }
+    }
+}
+
+task upgradeNodes(dependsOn: ['build']) {
+    doLast {
+        copy {
+            from 'cordacademy-obligation-contract/build/libs/cordacademy-obligation-contract.jar'
+            from 'cordacademy-obligation-workflow/build/libs/cordacademy-obligation-workflow.jar'
+            into 'build/nodes/PartyA/cordapps/'
+            into 'build/nodes/PartyB/cordapps/'
         }
     }
 }
