@@ -29,7 +29,8 @@ class ObligationContract : Contract {
             is Issue,
             is Transfer,
             is Settle,
-            is Exit -> command.value.verify(tx, command.signers.toSet())
+            is Exit,
+            is Default -> command.value.verify(tx, command.signers.toSet())
             else -> throw IllegalArgumentException("Unrecognised command.")
         }
     }
