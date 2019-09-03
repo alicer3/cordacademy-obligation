@@ -144,8 +144,18 @@ task upgradeNodes(dependsOn: ['build']) {
     doLast {
         copy {
             from 'cordacademy-obligation-contract/build/libs/cordacademy-obligation-contract.jar'
+            into 'build/nodes/PartyA/cordapps/'
+        }
+        copy {
             from 'cordacademy-obligation-workflow/build/libs/cordacademy-obligation-workflow.jar'
             into 'build/nodes/PartyA/cordapps/'
+        }
+        copy {
+            from 'cordacademy-obligation-contract/build/libs/cordacademy-obligation-contract.jar'
+            into 'build/nodes/PartyB/cordapps/'
+        }
+        copy {
+            from 'cordacademy-obligation-workflow/build/libs/cordacademy-obligation-workflow.jar'
             into 'build/nodes/PartyB/cordapps/'
         }
     }
