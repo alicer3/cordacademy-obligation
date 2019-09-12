@@ -4,28 +4,6 @@
 
 Business requirements change over time, and business software solutions need to follow suite. CorDapps are no different. In this series we will be looking at how to upgrade CorDapps. This document illustrates how to upgrade states and contracts in a CorDapp using explicit upgrades and hash constraints.
 
-
-
-## Acknowledgements
-
-### Henrik Carlström
-
-**Associate Director, Solutions Engineering, R3**
-
-Henrik's efforts have been instrumental in understanding the CorDapp upgrade process. Without his time and effort, this series on performing CorDapp upgrades would not have been possible. Thank you for your time and support.
-
-
-
-## Prerequisites
-
-There are a few applications that you should have installed on your machine before proceeding with the CorDapp upgrade laboratory:
-
-- [IntelliJ IDEA](https://www.jetbrains.com/idea/)
-- [Git](https://git-scm.com/)
-- [Postman](https://www.getpostman.com/)
-
-
-
 ## Understanding States
 
 ### R3's Definition
@@ -37,8 +15,6 @@ There are a few applications that you should have installed on your machine befo
 ### Expanding The Definition
 
 States are immutable data objects, composed of arbitrary information and can evolve over time. They provide a mechanism for nodes to store and share facts with one another and can be used to model all kinds of business entities and assets, such as financial instruments, obligations, currency, tokens, bookings, receipts, etc.
-
-
 
 ## Understanding Contracts
 
@@ -55,8 +31,6 @@ Contracts represent constraints which govern how states are created, evolved and
 Contract commands are not limited to verification of states only. They can also verify other transaction information; for example, attachments.
 
 Contract commands must always execute in a deterministic manner, so that what is true now, will always be true in future, and what is false now, will always be false in future. This is to ensure that transaction chains remain valid and there can be no disagreement over historic consensus.
-
-
 
 ## Laboratory
 

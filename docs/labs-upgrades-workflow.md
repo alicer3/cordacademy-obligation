@@ -4,28 +4,6 @@
 
 Business requirements change over time, and business software solutions need to follow suite. CorDapps are no different. In this series we will be looking at how to upgrade CorDapps. This document illustrates how to upgrade flows in a CorDapp.
 
-
-
-## Acknowledgements
-
-### Henrik Carlström
-
-**Associate Director, Solutions Engineering, R3**
-
-Henrik's efforts have been instrumental in understanding the CorDapp upgrade process. Without his time and effort, this series on performing CorDapp upgrades would not have been possible. Thank you for your time and support.
-
-
-
-## Prerequisites
-
-There are a few applications that you should have installed on your machine before proceeding with the CorDapp upgrade laboratory:
-
-- [IntelliJ IDEA](https://www.jetbrains.com/idea/)
-- [Git](https://git-scm.com/)
-- [Postman](https://www.getpostman.com/)
-
-
-
 ## Understanding Flows
 
 ### R3's Definition
@@ -43,8 +21,6 @@ Flows provide a mechanism for nodes to have conversations with each other. In th
 Conversations between nodes follow a protocol and must remain synchronised with each other. What one node requests from a counter-party, the counter-party must respond with. Breaking that synchronisation between nodes would likely cause unexpected behaviour or an all-out flow failure.
 
 Flows are _usually_ written in pairs, for example an **Initiator** flow and a **Responder** flow.
-
-
 
 ## Laboratory
 
@@ -166,8 +142,6 @@ From PartyA, select the POST **/obligations/issue** end-point. It's already conf
 ```
 
 Once this transaction completes, you should see a transaction ID. You can check this by querying the vault on PartyA's node and PartyB's node using the GET **/obligations** endpoint. In the new obligation you should see that the obligee and obligor are anonymised.
-
-
 
 ## Tasks
 
