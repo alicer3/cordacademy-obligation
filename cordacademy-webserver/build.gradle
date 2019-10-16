@@ -5,6 +5,7 @@ repositories {
     maven { url 'https://jitpack.io' }
     maven { url 'https://ci-artifactory.corda.r3cev.com/artifactory/corda' }
     maven { url 'https://repo.gradle.org/gradle/libs-releases' }
+    maven { url 'https://dl.bintray.com/cordacity/maven-releases' }
 }
 
 apply plugin: 'kotlin'
@@ -26,6 +27,9 @@ dependencies {
     implementation "$ktor_group:ktor-jackson:$ktor_version"
     implementation "$jackson_group:jackson-datatype-jsr310:$jackson_version"
     implementation "$logback_group:logback-classic:$logback_version"
+
+    // Koto Dependencies
+    implementation "$koto_group:koto:$koto_version"
 }
 
 jar { exclude '**/log4j2*.xml' }

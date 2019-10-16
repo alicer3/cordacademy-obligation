@@ -1,5 +1,6 @@
 package io.cordacademy.obligation.workflow
 
+import io.cordacademy.obligation.contract.ObligationState
 import io.cordacademy.test.FlowTest
 import net.corda.core.contracts.Amount
 import net.corda.core.contracts.UniqueIdentifier
@@ -16,7 +17,8 @@ fun FlowTest.issue(
     borrowed: Amount<Currency>,
     timeout: Duration = Duration.ofSeconds(30)
 ): SignedTransaction {
-    val flow = ObligationIssuanceFlow.Initiator(obligor, borrowed)
+    val state = ObligationState(obligor, initiator.info.legalIdentities.first(), borrowed)
+    val flow = ObligationIssuanceFlow.Initiator(state)
     return run { initiator.startFlow(flow) }.getOrThrow(timeout)
 }
 

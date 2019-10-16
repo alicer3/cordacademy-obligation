@@ -5,9 +5,16 @@ import io.cordacademy.obligation.workflow.ObligationExitFlow
 import io.cordacademy.obligation.workflow.ObligationIssuanceFlow
 import io.cordacademy.obligation.workflow.ObligationSettlementFlow
 import io.cordacademy.obligation.workflow.ObligationTransferFlow
+import io.cordacademy.webserver.areas.mustBeValidCordaX500Name
+import io.cordacademy.webserver.areas.mustBeValidCurrency
 import io.cordacademy.webserver.ofCurrency
 import io.cordacademy.webserver.resolveParty
 import io.cordacademy.webserver.toDto
+import io.cordacity.koto.projection.Projector
+import io.cordacity.koto.validation.ValidationMode
+import io.cordacity.koto.validation.Validator
+import io.cordacity.koto.validation.mustBeGreaterThan
+import io.cordacity.koto.validation.mustNotBeNull
 import io.ktor.application.call
 import io.ktor.http.HttpStatusCode
 import io.ktor.request.receive
@@ -20,6 +27,7 @@ import net.corda.core.messaging.startTrackedFlow
 import net.corda.core.node.services.Vault
 import net.corda.core.node.services.vault.QueryCriteria
 import net.corda.core.utilities.getOrThrow
+import java.math.BigDecimal
 
 private typealias IssuanceFlow = ObligationIssuanceFlow.Initiator
 private typealias TransferFlow = ObligationTransferFlow.Initiator
@@ -52,9 +60,32 @@ fun Route.obligationRoutes(rpc: CordaRPCOps) = route("/obligations") {
     post("/issue") {
         try {
             val dto = call.receive<ObligationIssuanceInputDto>()
-            val obligor = rpc.resolveParty(dto.obligor)
-            val borrowed = Amount.ofCurrency(dto.borrowed, dto.currency)
-            val transaction = rpc.startTrackedFlow(::IssuanceFlow, obligor, borrowed).returnValue.getOrThrow()
+
+            Validator.validatorFor<ObligationIssuanceInputDto> {
+
+                allProperties { mustNotBeNull() }
+
+                property(ObligationIssuanceInputDto::obligor) {
+                    mustBeValidCordaX500Name()
+                }
+
+                property(ObligationIssuanceInputDto::borrowed) {
+                    mustBeGreaterThan(BigDecimal.ZERO)
+                }
+
+                property(ObligationIssuanceInputDto::currency) {
+                    mustBeValidCurrency()
+                }
+
+            }.validate(dto, ValidationMode.DEFAULT)
+
+            val state = Projector.project<ObligationIssuanceInputDto, ObligationState>(dto) {
+                parameter(ObligationState::obligee, rpc.nodeInfo().legalIdentities.first())
+                parameter(ObligationState::obligor, rpc.resolveParty(dto.obligor))
+                parameter(ObligationState::borrowed, Amount.ofCurrency(dto.borrowed, dto.currency))
+            }
+
+            val transaction = rpc.startTrackedFlow(::IssuanceFlow, state).returnValue.getOrThrow()
             call.respond(ObligationTransactionOutputDto(transaction.id.toString()))
         } catch (ex: Exception) {
             call.respond(HttpStatusCode.InternalServerError, mapOf("errorMessage" to ex.message))

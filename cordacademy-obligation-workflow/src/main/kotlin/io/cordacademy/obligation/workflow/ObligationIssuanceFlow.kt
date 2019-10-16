@@ -32,17 +32,15 @@ object ObligationIssuanceFlow {
     @StartableByRPC
     @InitiatingFlow(version = FLOW_VERSION_1)
     class Initiator(
-        private val obligor: Party,
-        private val borrowed: Amount<Currency>
+        private val obligation: ObligationState
     ) : InitiatorFlowLogic() {
 
         @Suspendable
         override fun call(): SignedTransaction {
 
             setStep(INITIALIZING_FLOW)
-            val obligee = serviceHub.myInfo.legalIdentities.first()
-            val obligorFlowSession = initiateFlow(obligor)
-            val obligation = ObligationState(obligor, obligee, borrowed)
+            val obligorFlowSession = initiateFlow(
+                serviceHub.identityService.wellKnownPartyFromAnonymous(obligation.obligor)!!)
             val ourSigningKey = obligation.obligee.owningKey
 
             setStep(CREATING_TRANSACTION)
