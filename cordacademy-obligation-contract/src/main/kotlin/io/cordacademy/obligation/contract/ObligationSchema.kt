@@ -28,7 +28,7 @@ object ObligationSchemaV1: MappedSchema(
         @Column(name = "currency_code")
         var currency: String,
         @Column(name = "linear_id")
-        var linearId: String
+        var linearId: UUID
     ) : PersistentState()
 
 }
