@@ -1,0 +1,31 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <changeSet author="alice" id="create_obligation_table_id">
+        <createTable tableName="obligation_states">
+            <column name="output_index" type="INTEGER">
+                <constraints nullable="false"/>
+            </column>
+            <column name="transaction_id" type="NVARCHAR(64)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="borrowed" type="DECIMAL(19,2)">
+            </column>
+            <column name="currency_code" type="NVARCHAR(255)">
+            </column>
+            <column name="linear_id" type="NVARCHAR(255)">
+            </column>
+            <column name="obligee" type="NVARCHAR(255)">
+            </column>
+            <column name="obligor" type="NVARCHAR(255)">
+            </column>
+            <column name="settled" type="DECIMAL(19,2)">
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="alice" id="obligation_pkey_id">
+        <addPrimaryKey columnNames="output_index, transaction_id" constraintName="obligation_states_pkey"
+                       tableName="obligation_states"/>
+    </changeSet>
+</databaseChangeLog>

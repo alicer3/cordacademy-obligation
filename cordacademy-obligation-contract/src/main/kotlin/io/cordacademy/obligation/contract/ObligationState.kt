@@ -5,6 +5,9 @@ import net.corda.core.contracts.BelongsToContract
 import net.corda.core.contracts.LinearState
 import net.corda.core.contracts.UniqueIdentifier
 import net.corda.core.identity.AbstractParty
+import net.corda.core.schemas.MappedSchema
+import net.corda.core.schemas.PersistentState
+import net.corda.core.schemas.QueryableState
 import java.util.*
 
 /**
@@ -23,7 +26,7 @@ data class ObligationState(
     val borrowed: Amount<Currency>,
     val settled: Amount<Currency> = Amount.zero(borrowed.token),
     override val linearId: UniqueIdentifier = UniqueIdentifier()
-) : LinearState {
+) : LinearState, QueryableState {
 
     init {
         check(borrowed.token == settled.token) {
@@ -40,4 +43,21 @@ data class ObligationState(
      * Gets the amount that is outstanding on the obligation.
      */
     val outstanding: Amount<Currency> get() = borrowed - settled
+
+    override fun generateMappedObject(schema: MappedSchema): PersistentState {
+        return when (schema) {
+            is ObligationSchemaV1 -> ObligationSchemaV1.PersistentObligation(
+                this.obligor.nameOrNull().toString(),
+                this.obligee.nameOrNull().toString(),
+                this.borrowed.toDecimal(),
+                this.settled.toDecimal(),
+                this.borrowed.token.currencyCode,
+                this.linearId.id.toString()
+            )
+            else -> throw IllegalArgumentException("Unrecognised schema $schema")
+        }
+    }
+
+    override fun supportedSchemas(): Iterable<MappedSchema> = listOf(ObligationSchemaV1)
+
 }
