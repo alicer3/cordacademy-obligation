@@ -90,6 +90,26 @@ tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile) {
     }
 }
 
+void createTask(String node) {
+    String taskName = "installCE_" + node;
+    task (taskName) {
+        doLast {
+            copy {
+                from 'lib/corda.jar'
+                into 'build/nodes/Party' + node + '/'
+            }
+            File conf = new File("build/nodes/Party" + node + "/node.conf")
+            conf.append('\ndatabase { runMigration = true }')
+        }
+    }
+}
+
+String[] platforms = ["A", "B", "C"];
+for(String platform : platforms) {
+    createTask(platform);
+}
+
+
 task deployNodes(type: net.corda.plugins.Cordform, dependsOn: ['jar']) {
 
     nodeDefaults {
@@ -136,6 +156,27 @@ task deployNodes(type: net.corda.plugins.Cordform, dependsOn: ['jar']) {
         rpcSettings {
             address("localhost:10013")
             adminAddress("localhost:10053")
+        }
+    }
+
+}
+
+
+
+
+task upgradeNodes(dependsOn: ['build']) {
+    doLast {
+        copy {
+            from 'cordacademy-obligation-contract/build/libs/cordacademy-obligation-contract.jar'
+            into 'build/nodes/PartyA/cordapps/'
+        }
+        copy {
+            from 'cordacademy-obligation-contract/build/libs/cordacademy-obligation-contract.jar'
+            into 'build/nodes/PartyB/cordapps/'
+        }
+        copy {
+            from 'cordacademy-obligation-contract/build/libs/cordacademy-obligation-contract.jar'
+            into 'build/nodes/PartyC/cordapps/'
         }
     }
 }
