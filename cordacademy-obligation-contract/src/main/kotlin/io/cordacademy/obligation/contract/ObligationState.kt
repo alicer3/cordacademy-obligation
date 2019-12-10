@@ -52,7 +52,7 @@ data class ObligationState(
                 this.borrowed.toDecimal(),
                 this.settled.toDecimal(),
                 this.borrowed.token.currencyCode,
-                this.linearId.id
+                this.linearId.id.toString()
             )
             else -> throw IllegalArgumentException("Unrecognised schema $schema")
         }

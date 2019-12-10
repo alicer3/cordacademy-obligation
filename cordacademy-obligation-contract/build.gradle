@@ -39,7 +39,10 @@ dependencies {
     testImplementation project(":cordacademy-test")
 }
 
-jar { exclude '**/log4j2*.xml' }
+jar {
+    exclude '**/log4j2*.xml'
+    exclude '**/migration/**'
+}
 
 test {
     jvmArgs = ["-ea", "-javaagent:../lib/quasar.jar"]
